@@ -6,9 +6,9 @@ import { orderCompletedReducer } from "./orderCompletedReducer";
 import { userReducer } from "./userReducer";
 
 export const rootReducer = combineReducers({
-    productReducer,
-    profileReducer,
-    cartReducer,
-    orderCompletedReducer,
-    userReducer
+    user:userReducer,
+    product:productReducer,
+    profile:profileReducer,
+    cart:cartReducer,
+    order:orderCompletedReducer,
 })

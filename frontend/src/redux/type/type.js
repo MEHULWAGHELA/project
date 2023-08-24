@@ -14,3 +14,4 @@ export const GETORDERCOMPLETED = 'GETORDERCOMPLETED'
 
 /* Sign Up */
 export const USERGET = 'USERGET'
+export const USERSET = 'USERSET'
