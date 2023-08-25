@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaUser } from 'react-icons/fa'
 import { signin } from '../../redux/action/signInAction';
 import { useCookies } from 'react-cookie';
+import { NavLink } from 'react-router-dom';
 
 const SignIn = () => {
   let [cookies, setcookies, removecookies] = useCookies()
@@ -27,6 +28,7 @@ const SignIn = () => {
     <Fragment>
       <Container fluid className='py-5 userForm'>
         <Container>
+
           <h1 className='text-center text-white mb-4'><FaUser /><span className='vertical-align-center'>Welcome to my website</span></h1>
           <Row>
             <Col xs={12} md={6}>
@@ -76,6 +78,8 @@ const SignIn = () => {
                     <input type="submit" className='form-control bg-secondary fw-bold text-white' />
                   </div>
                 </Form>
+                <div>
+                </div>
               </div>
             </Col>
           </Row>

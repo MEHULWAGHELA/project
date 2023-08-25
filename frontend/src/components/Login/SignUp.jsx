@@ -1,14 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import '../../styles/login/signup.scss'
-import { Col, Container, Form, FormGroup, input, Label, Row } from 'reactstrap'
+import { Col, Container, Form, FormGroup, input, Label, NavLink, Row } from 'reactstrap'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, setUserData } from '../../redux/action/signUpAction';
 import { FaUser } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
   let state = useSelector((state) => state)
   let dispatch = useDispatch()
   const { register, handleSubmit, formState: { errors } } = useForm();
+  let navigate = useNavigate()
   const onSubmit = (data) => {
     let formdata = new FormData()
     formdata.append('address', data.address)
@@ -32,11 +34,16 @@ const SignUp = () => {
     dispatch(getUserData())
   }, [state])
 
+  const signin = () => {
+    navigate('/signin')
+  }
   return (
     <Fragment>
-      {console.log(errors)}
       <Container fluid className='py-5 userForm'>
         <Container>
+          <div>
+            <p>already a user? <NavLink to="/">LOG IN</NavLink> </p>
+          </div>
           <h1 className='text-center text-white mb-4'><FaUser /><span className='vertical-align-center'>User Sign Up</span></h1>
           <Row>
             <Col xs={12} md={10} className='offset-md-1'>
@@ -328,6 +335,7 @@ const SignUp = () => {
                   <input type="submit" className='form-control' />
                 </div>
               </Form>
+
             </Col>
           </Row>
         </Container>

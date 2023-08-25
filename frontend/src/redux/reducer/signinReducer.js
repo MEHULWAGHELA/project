@@ -9,7 +9,8 @@ export const signinReducer = (state = defaultState, action) => {
         case SIGNIN: {
             axios.post('http://localhost:7000/api/user/login', action.obj).then((res) => {
                 return {
-                    userData: [1,2,3]
+                    userData: [1, 2, 3],
+                    res: res
                 }
             }).catch((err) => {
                 console.log(err)
