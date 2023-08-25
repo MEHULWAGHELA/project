@@ -5,8 +5,10 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaUser } from 'react-icons/fa'
 import { signin } from '../../redux/action/signInAction';
+import { useCookies } from 'react-cookie';
 
 const SignIn = () => {
+  let [cookies, setcookies, removecookies] = useCookies()
   let state = useSelector((state) => state)
   let dispatch = useDispatch()
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -16,12 +18,13 @@ const SignIn = () => {
   }, [state])
 
   const onSubmit = (data) => {
-    console.log(data)
     dispatch(signin(data))
+    // let expiryDate = new Date()
+    // expiryDate.setMinutes(expiryDate.getMinutes() + 60)
+    // setcookies('greet', 'Mehul Waghela', { path: '/', expires: expiryDate })
   }
   return (
     <Fragment>
-      {console.log(state.signin)}
       <Container fluid className='py-5 userForm'>
         <Container>
           <h1 className='text-center text-white mb-4'><FaUser /><span className='vertical-align-center'>Welcome to my website</span></h1>
