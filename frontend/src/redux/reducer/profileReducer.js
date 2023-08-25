@@ -12,7 +12,6 @@ export const profileReducer = (state = defaultState, action) => {
                 console.log(err)
             })
     }
-    console.log(action)
     switch (action.type) {
         case GETPROFILE: {
             get()

@@ -19,8 +19,6 @@ export const userReducer = (state = defaultState, action) => {
             console.log(err)
         })
     }
-    console.log(action)
-    console.log("hello")
     switch (action.type) {
         case USERGET: {
             getApi()

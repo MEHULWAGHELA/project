@@ -10,26 +10,23 @@ const SignUp = () => {
   let dispatch = useDispatch()
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
-    let formData = new FormData()
-    formData.append('address', data.userName)
-    formData.append('email', data.email)
-    formData.append('mobile', data.mobile)
-    formData.append('postalCode', data.postalCode)
-    formData.append('birthDate', data.birthDate)
-    formData.append('officeContact', data.officeContact)
-    formData.append('qualification', data.qualification)
-    formData.append('address', data.address)
-    formData.append('password', data.password)
-    formData.append('confirmPassword', data.confirmPassword)
-    formData.append('userName', data.gender)
-    formData.append('userImage', data.userImage)
-    formData.append('city', data.city)
-    formData.append('state', data.state)
-    formData.append('address', data.country)
-    for (let x of formData.entries()) {
-      console.log(x)
-    }
-    dispatch(setUserData(data))
+    let formdata = new FormData()
+    formdata.append('address', data.address)
+    formdata.append('email', data.email)
+    formdata.append('mobile', data.mobile)
+    formdata.append('postalCode', data.postalCode)
+    formdata.append('birthDate', data.birthDate)
+    formdata.append('officeContact', data.officeContact)
+    formdata.append('qualification', data.qualification)
+    formdata.append('gender', data.gender)
+    formdata.append('password', data.password)
+    formdata.append('confirmPassword', data.confirmPassword)
+    formdata.append('userName', data.userName)
+    formdata.append('userImage', data.userImage[0])
+    formdata.append('city', data.city)
+    formdata.append('state', data.state)
+    formdata.append('country', data.country)
+    dispatch(setUserData(formdata))
   }
   useEffect(() => {
     dispatch(getUserData())
@@ -37,6 +34,7 @@ const SignUp = () => {
 
   return (
     <Fragment>
+      {console.log(errors)}
       <Container fluid className='py-5 userForm'>
         <Container>
           <h1 className='text-center text-white mb-4'><FaUser /><span className='vertical-align-center'>User Sign Up</span></h1>
@@ -292,6 +290,7 @@ const SignUp = () => {
                             name="gender"
                             type="radio"
                             value='Male'
+                            {...register("gender")}
                           />
                           <Label for="male" className='text-white ms-1'>
                             Male
@@ -303,6 +302,7 @@ const SignUp = () => {
                             name="gender"
                             type="radio"
                             value='Female'
+                            {...register("gender")}
                           />
                           <Label for="female" className='text-white ms-1'>
                             Female
@@ -314,6 +314,7 @@ const SignUp = () => {
                             name="gender"
                             type="radio"
                             value='Trans'
+                            {...register("gender")}
                           />
                           <Label for="trans" className='text-white ms-1'>
                             Trans
