@@ -11,44 +11,61 @@ import CompletedOrder from './components/pages/CompletedOrder';
 import Profile from './components/pages/Profile';
 import Product from './components/pages/Product';
 import Orders from './components/pages/Orders';
-import { useCookies } from 'react-cookie';
+import { CookiesProvider, useCookies } from 'react-cookie';
 import { useSelector } from 'react-redux';
 
 function App() {
   let [isLogin, setIsLogin] = useState(false)
   let state = useSelector((state) => state)
-  let [cookies, setcookies, removecookies] = useCookies()
-
+  let [cookies, setcookies, removecookies] = useCookies('token')
   useEffect(() => {
     if (state.signin.token) {
       let expiryDate = new Date()
       expiryDate.setHours(expiryDate.getHours() + 1)
       setcookies('token', state.signin.token, { path: '/', expires: expiryDate })
+      localStorage.setItem("token", state.signin.token)
+      setIsLogin(true)
     }
   }, [state])
+
+  // setInterval(() => {
+  //   if (!cookies.token) {
+  //     setIsLogin(false);
+  //     // localStorage.removeItem("token")
+  //   }
+  // }, 5000);
+
+  // useEffect(() => {
+  //   if (cookies.token) {
+  //     setIsLogin(true);
+  //   }
+  // }, [])
+
   return (
     <div className="App">
-      <Container fluid className='g-0'>
-        <BrowserRouter>
-          <Routes>
-            {(isLogin) ?
-              <Fragment>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/product" element={<Product />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/completedOrder" element={<CompletedOrder />} />
-                <Route path="/profile" element={<Profile />} />
-              </Fragment>
-              :
-              <Fragment>
-                <Route path="/" element={<SignUp />} />
-                <Route path="/signIn" element={<SignIn />} />
-              </Fragment>
-            }
-          </Routes>
-        </BrowserRouter>
-      </Container>
+      <CookiesProvider>
+        <Container fluid className='g-0'>
+          <BrowserRouter>
+            <Routes>
+              {(isLogin) ?
+                <Fragment>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/product" element={<Product />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/orders" element={<Orders />} />
+                  <Route path="/completedOrder" element={<CompletedOrder />} />
+                  <Route path="/profile" element={<Profile />} />
+                </Fragment>
+                :
+                <Fragment>
+                  <Route path="/signup" element={<SignUp />} />
+                  <Route path="/" element={<SignIn />} />
+                </Fragment>
+              }
+            </Routes>
+          </BrowserRouter>
+        </Container>
+      </CookiesProvider>
     </div>
   );
 }

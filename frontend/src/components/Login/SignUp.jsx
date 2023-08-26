@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import '../../styles/login/signup.scss'
-import { Col, Container, Form, FormGroup, input, Label, NavLink, Row } from 'reactstrap'
+import { Col, Container, Form, FormGroup, input, Label, Row } from 'reactstrap'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData, setUserData } from '../../redux/action/signUpAction';
 import { FaUser } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 const SignUp = () => {
   let state = useSelector((state) => state)
   let dispatch = useDispatch()
@@ -34,15 +34,12 @@ const SignUp = () => {
     dispatch(getUserData())
   }, [state])
 
-  const signin = () => {
-    navigate('/signin')
-  }
   return (
     <Fragment>
       <Container fluid className='py-5 userForm'>
         <Container>
-          <div>
-            <p>already a user? <NavLink to="/">LOG IN</NavLink> </p>
+          <div className='text-end'>
+            <p className='text-white'>Already a user? Click hear <br /> <NavLink to="/" className='text-white text-decoration-none'>LOG IN</NavLink> </p>
           </div>
           <h1 className='text-center text-white mb-4'><FaUser /><span className='vertical-align-center'>User Sign Up</span></h1>
           <Row>

@@ -14,28 +14,43 @@ const SidebarC = () => {
       </div>
       <div className='sidebar_navlink mt-3'>
         <ul>
-          <li>
-            <NavLink to="/" className='text-white text-decoration-none fs-5'><RxDashboard /><span className='align-middle ms-2'>Dashboard</span></NavLink>
-          </li>
-          <li>
-            <NavLink to="/product" className='text-white text-decoration-none fs-5'><MdOutlineProductionQuantityLimits /><span className='align-middle ms-2'>Product</span></NavLink>
-          </li>
-          <li>
-            <NavLink to="/cart" className='text-white text-decoration-none fs-5'><BsCart4 /><span className='align-middle ms-2'>Cart</span></NavLink>
+          <NavLink to="/" className='text-white text-decoration-none fs-5'>
+            <li>
+              <RxDashboard /><span className='align-middle ms-2'>Dashboard</span>
+            </li>
+          </NavLink>
 
-          </li>
-          <li>
-            <NavLink to="/orders" className='text-white text-decoration-none fs-5'><LiaJediOrder /><span className='align-middle ms-2'>Orders</span></NavLink>
 
-          </li>
-          <li>
-            <NavLink to="/completedOrder" className='text-white text-decoration-none fs-5'><MdOutlineIncompleteCircle /><span className='align-middle ms-2'>Completed Order</span></NavLink>
+          <NavLink to="/product" className='text-white text-decoration-none fs-5'>
+            <li>
+              <MdOutlineProductionQuantityLimits /><span className='align-middle ms-2'>Product</span>
+            </li>
+          </NavLink>
 
-          </li>
-          <li>
-            <NavLink to="/profile" className='text-white text-decoration-none fs-5'><CgProfile /><span className='align-middle ms-2'>Profile</span></NavLink>
+          <NavLink to="/cart" className='text-white text-decoration-none fs-5'>
+            <li>
+              <BsCart4 /><span className='align-middle ms-2'>Cart</span>
+            </li>
+          </NavLink>
 
-          </li>
+          <NavLink to="/orders" className='text-white text-decoration-none fs-5'>
+            <li>
+              <LiaJediOrder /><span className='align-middle ms-2'>Orders</span>
+            </li>
+          </NavLink>
+
+          <NavLink to="/completedOrder" className='text-white text-decoration-none fs-5'>
+            <li>
+              <MdOutlineIncompleteCircle /><span className='align-middle ms-2'>Completed Order</span>
+            </li>
+          </NavLink>
+
+          <NavLink to="/profile" className='text-white text-decoration-none fs-5'>
+            <li>
+              <CgProfile /><span className='align-middle ms-2'>Profile</span>
+            </li>
+          </NavLink>
+
         </ul>
       </div>
     </Fragment>

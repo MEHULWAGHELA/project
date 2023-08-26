@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import { signin } from '../../redux/action/signInAction';
 
 const SignIn = () => {
-  
+
   let state = useSelector((state) => state)
   let dispatch = useDispatch()
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -73,7 +73,8 @@ const SignIn = () => {
                     <input type="submit" className='form-control bg-secondary fw-bold text-white' />
                   </div>
                 </Form>
-                <div>
+                <div className='text-center mt-2'>
+                  <NavLink to="/signup" className='text-white'>Create New Account</NavLink>
                 </div>
               </div>
             </Col>
