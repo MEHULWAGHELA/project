@@ -4,31 +4,26 @@ import { Col, Container, Form, FormGroup, input, Label, Row } from 'reactstrap'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaUser } from 'react-icons/fa'
-import { signin } from '../../redux/action/signInAction';
-import { useCookies } from 'react-cookie';
 import { NavLink } from 'react-router-dom';
+import { signin } from '../../redux/action/signInAction';
 
 const SignIn = () => {
-  let [cookies, setcookies, removecookies] = useCookies()
+  
   let state = useSelector((state) => state)
   let dispatch = useDispatch()
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  useEffect(() => {
-    console.log(state.signin)
-  }, [state])
+
 
   const onSubmit = (data) => {
     dispatch(signin(data))
-    // let expiryDate = new Date()
-    // expiryDate.setMinutes(expiryDate.getMinutes() + 60)
-    // setcookies('greet', 'Mehul Waghela', { path: '/', expires: expiryDate })
   }
+
   return (
     <Fragment>
       <Container fluid className='py-5 userForm'>
         <Container>
-
+          {console.log(state)}
           <h1 className='text-center text-white mb-4'><FaUser /><span className='vertical-align-center'>Welcome to my website</span></h1>
           <Row>
             <Col xs={12} md={6}>

@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { Container } from 'reactstrap';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import SignUp from './components/Login/SignUp';
 import SignIn from './components/Login/SignIn';
 import Dashboard from './components/pages/Dashboard';
@@ -11,9 +11,21 @@ import CompletedOrder from './components/pages/CompletedOrder';
 import Profile from './components/pages/Profile';
 import Product from './components/pages/Product';
 import Orders from './components/pages/Orders';
+import { useCookies } from 'react-cookie';
+import { useSelector } from 'react-redux';
 
 function App() {
   let [isLogin, setIsLogin] = useState(false)
+  let state = useSelector((state) => state)
+  let [cookies, setcookies, removecookies] = useCookies()
+
+  useEffect(() => {
+    if (state.signin.token) {
+      let expiryDate = new Date()
+      expiryDate.setHours(expiryDate.getHours() + 1)
+      setcookies('token', state.signin.token, { path: '/', expires: expiryDate })
+    }
+  }, [state])
   return (
     <div className="App">
       <Container fluid className='g-0'>
