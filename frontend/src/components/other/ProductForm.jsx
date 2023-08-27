@@ -9,14 +9,17 @@ import {
     Form,
     FormGroup,
     Row,
-    Col
+    Col,
+    ModalFooter,
+    Button
 } from 'reactstrap';
 import '../../styles/other/productform.scss'
-const ProductForm = () => {
+const ProductForm = (props) => {
     let state = useSelector((state) => state)
     let dispatch = useDispatch()
     const { register, handleSubmit, formState: { errors } } = useForm();
     let navigate = useNavigate()
+
 
     const onSubmit = (data) => {
         let formdata = new FormData()
@@ -30,6 +33,7 @@ const ProductForm = () => {
         formdata.append('colors', data.colors)
         formdata.append('productImage', data.productImage[0])
         dispatch(setProduct(formdata))
+        props.toggle()
     }
     return (
         <div className='pForm'>
@@ -46,7 +50,7 @@ const ProductForm = () => {
                                 {...register("productName", { required: true })}
                             />
                             <Label for="productName">
-                                User Name
+                                Product Name
                             </Label>
                             {errors.productName && <span className='text-warning'>This field is required</span>}
                         </FormGroup>
@@ -181,9 +185,10 @@ const ProductForm = () => {
                         </FormGroup>
                     </Col>
                 </Row>
-                <div className=''>
-                    <input type="submit" className='form-control' />
-                </div>
+                <ModalFooter>
+                    <input type="submit" className='form-control w-25 text-bg-secondary fw-bold fs-5' />
+                </ModalFooter>
+
             </Form>
         </div>
     )

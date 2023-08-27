@@ -22,6 +22,7 @@ import PropTypes from 'prop-types';
 import ProductForm from '../other/ProductForm';
 import { useCookies } from 'react-cookie';
 import { authorise } from '../authorize/authorise';
+import { GETPRODUCT } from '../../redux/type/type';
 
 const Product = (props) => {
   let state = useSelector((state) => state)
@@ -37,7 +38,9 @@ const Product = (props) => {
 
   useEffect(() => {
     dispatch(getProduct())
+    console.log(state)
   }, [])
+
   return (
     <div>
       {/* Modal  */}
@@ -55,50 +58,52 @@ const Product = (props) => {
         >
           <ModalHeader toggle={toggle}>Product Info</ModalHeader>
           <ModalBody>
-            <ProductForm />
+            <ProductForm toggle={toggle} />
           </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onClick={toggle}>
-              Cancel
-            </Button>
-          </ModalFooter>
         </Modal>
       </div>
 
       {/* Modal  */}
 
       {/* CARD */}
-      <Card
-        style={{
-          width: '18rem'
-        }}
-      >
-        <img
-          alt="Sample"
-          src="https://picsum.photos/300/200"
-        />
-        <CardBody>
-          <CardTitle tag="h5">
-            Card title
-          </CardTitle>
-          <CardSubtitle
-            className="mb-2 text-muted"
-            tag="h6"
-          >
-            Card subtitle
-          </CardSubtitle>
-          <CardText>
-            Some quick example text to build on the card title and make up the bulk of the card‘s content.
-          </CardText>
-          <Button>
-            Button
-          </Button>
-        </CardBody>
-      </Card>
+      {console.log(state.product.productData)}
+      {
+        state.product.productData.map((x, i) => {
+          <div key={i}>
+            <Card
+              style={{
+                width: '18rem'
+              }}
+            >
+              <img
+                alt="Sample"
+                src="https://picsum.photos/300/200"
+              />
+              <CardBody>
+                <CardTitle tag="h5">
+                  {x.productName}
+                </CardTitle>
+                <CardSubtitle
+                  className="mb-2 text-muted"
+                  tag="h6"
+                >
+                  Card subtitle
+                </CardSubtitle>
+                <CardText>
+                  Some quick example text to build on the card title and make up the bulk of the card‘s content.
+                </CardText>
+                <Button>
+                  Button
+                </Button>
+              </CardBody>
+            </Card>
+          </div>
+
+        })
+      }
 
       {/* CARD */}
 
-      <button onClick={() => dispatch(getProduct())}>Get Data</button>
     </div>
   )
 }
