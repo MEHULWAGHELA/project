@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Hoc } from '../hoc/Hoc'
 import '../../styles/pages/product.scss'
-import { getProduct, setProduct } from '../../redux/action/productAction'
+import { deleteProduct, getProduct, setProduct } from '../../redux/action/productAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { PiDotsThreeOutlineVerticalBold } from 'react-icons/pi'
 import {
@@ -34,15 +34,17 @@ const Product = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  useEffect(() => {
-    console.log(state.product)
-  }, [state])
 
   useEffect(() => {
     dispatch(getProduct())
-    console.log(state)
   }, [])
 
+  const editProductData=(id)=>{
+    
+  }
+  const deleteProductData=(id)=>{
+    dispatch(deleteProduct(id))
+  }
   return (
     <div>
       {/* Modal  */}
@@ -76,7 +78,7 @@ const Product = (props) => {
           {
             state.product.productData.map((x, i) => {
               return (
-                <Col xs={4} key={i}>
+                <Col xs={12} md={6} lg={4} key={i}>
                   <Card className='position-relative' style={{ backgroundColor: x.color }}>
                     <img
                       alt="Sample"
@@ -85,8 +87,8 @@ const Product = (props) => {
                     <div className='product_card_three_dot'>
                       <PiDotsThreeOutlineVerticalBold />
                       <dir className='product_card_three_dot_hover'>
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <button onClick={()=>editProductData(x._id)}>Edit</button>
+                        <button onClick={()=>deleteProductData(x._id)}>Delete</button>
                       </dir>
                     </div>
                     <CardBody>

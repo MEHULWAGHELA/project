@@ -1,6 +1,6 @@
 import axios from "axios"
 import { authorise } from "../../components/authorize/authorise"
-import { GETPRODUCT, SETPRODUCT } from "../type/type"
+import { DELETEPRODUCT, GETPRODUCT, SETPRODUCT } from "../type/type"
 
 export const getProduct = () => {
     return (dispatch) => {
@@ -22,10 +22,15 @@ export const setProduct = (obj) => {
             .catch((err) => {
                 console.log(err)
             })
+        }
     }
-}
-export const deleteProduct = (id) => {
-    return (dispatch) => {
-        dispatch({ type: GETPRODUCT, id: id })
+    export const deleteProduct = (id) => {
+        return (dispatch) => {
+        axios.delete('http://localhost:7000/api/product/delete?id='+id,authorise())
+        .then((res)=>{
+            dispatch(getProduct())
+        }).catch((err)=>{
+            console.log(err)
+        })
     }
 }

@@ -1,21 +1,14 @@
 import axios from "axios";
 import { GETPROFILE } from "../type/type";
 let defaultState = {
-    productData: []
+    profileData: []
 }
 export const profileReducer = (state = defaultState, action) => {
-    const get = () => {
-        axios.get('http://localhost:7000/api/user/getUser')
-            .then((res) => {
-                console.log(res)
-            }).catch((err) => {
-                console.log(err)
-            })
-    }
     switch (action.type) {
         case GETPROFILE: {
-            get()
-            return state
+            return {
+               profileData:[...action.data] 
+            }
         }
         default: return state
     }

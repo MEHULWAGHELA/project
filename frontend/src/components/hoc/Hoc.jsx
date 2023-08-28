@@ -8,10 +8,10 @@ export const Hoc = (Component) => {
         return (
             <Fragment>
                 <Row className="g-0">
-                    <Col xs={2} className='hoc_sidebar'>
+                    <Col xs={0} md={2} className='hoc_sidebar d-none d-md-block'>
                         <SidebarC />
                     </Col>
-                    <Col xs={10} >
+                    <Col xs={12} md={10} >
                         <HeaderC />
                         <Component />
                     </Col>

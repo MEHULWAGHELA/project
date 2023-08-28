@@ -5,7 +5,6 @@ let defaultState = {
     userData: [1]
 }
 export const signinReducer = (state = defaultState, action) => {
-    console.log(action)
     switch (action.type) {
         case SIGNIN: {
             return {

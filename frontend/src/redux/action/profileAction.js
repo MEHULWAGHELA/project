@@ -1,7 +1,16 @@
+import axios from "axios"
+import { authorise } from "../../components/authorize/authorise"
 import { GETPROFILE } from "../type/type"
 
 export const getProfile = () => {
     return (dispatch) => {
-        dispatch({ type: GETPROFILE })
-    }
+        axios.get('http://localhost:7000/api/user/getUser', authorise())
+            .then((res) => {
+                dispatch({ type: GETPROFILE, data: res.data.data })
+            }
+            )
+            .catch((err) => {
+                console.log(err)
+            })
+    }   
 }
