@@ -8,12 +8,12 @@ import { CgProfile } from 'react-icons/cg'
 const HeaderC = () => {
   return (
     <Fragment>
-      <Container fluid className='header bg-dark d-flex justify-content-end py-4 rounded-1'>
-        <div>
-          <NavLink to="/profile" className='text-white text-decoration-none fs-4'><CgProfile /><span className='align-middle'>Profile</span></NavLink>
-        </div>
-      </Container>
-    </Fragment>
+      <Container fluid className='header'>
+      <div>
+        <NavLink to="/profile" className='text-white text-decoration-none fs-4'><CgProfile /><span className='align-middle'>Profile</span></NavLink>
+      </div>
+    </Container>
+    </Fragment >
   )
 }
 

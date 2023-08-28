@@ -1,0 +1,16 @@
+.product_card {
+  &_three_dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    background-color: rgba(255, 0, 0, 0.438);
+    padding: 20px;
+    cursor: pointer;
+  }
+  &_three_dot_hover {
+    display: none;
+  }
+  &_three_dot:hover &three_dot_hover {
+  }
+}

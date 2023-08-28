@@ -35,11 +35,11 @@ function App() {
   //   }
   // }, 5000);
 
-  // useEffect(() => {
-  //   if (cookies.token) {
-  //     setIsLogin(true);
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (cookies.token) {
+      setIsLogin(true);
+    }
+  }, [])
 
   return (
     <div className="App">

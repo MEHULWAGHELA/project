@@ -18,8 +18,6 @@ const ProductForm = (props) => {
     let state = useSelector((state) => state)
     let dispatch = useDispatch()
     const { register, handleSubmit, formState: { errors } } = useForm();
-    let navigate = useNavigate()
-
 
     const onSubmit = (data) => {
         let formdata = new FormData()

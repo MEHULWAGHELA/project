@@ -1,7 +1,14 @@
 .hoc {
   &_sidebar {
+    position: sticky;
+    top: 0;
     color: white;
     background-color: #13101c;
     height: 100vh;
+    min-height: 700px;
+  }
+  &_header {
+    position: sticky;
+    top: 0;
   }
 }

@@ -4,6 +4,7 @@ import { Hoc } from '../hoc/Hoc'
 import '../../styles/pages/product.scss'
 import { getProduct, setProduct } from '../../redux/action/productAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { PiDotsThreeOutlineVerticalBold } from 'react-icons/pi'
 import {
   Button,
   Modal,
@@ -16,7 +17,8 @@ import {
   CardText,
   Card,
   Row,
-  Col
+  Col,
+  Container
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import ProductForm from '../other/ProductForm';
@@ -46,9 +48,11 @@ const Product = (props) => {
       {/* Modal  */}
 
       <div>
-        <Button onClick={toggle}>
-          Add Product
-        </Button>
+        <div className='my-3 d-flex justify-content-end'>
+          <Button onClick={toggle}>
+            Add Product
+          </Button>
+        </div>
         <Modal
           isOpen={modal}
           toggle={toggle}
@@ -66,45 +70,64 @@ const Product = (props) => {
       {/* Modal  */}
 
       {/* CARD */}
-      {console.log(state.product.productData)}
-      {
-        state.product.productData.map((x, i) => {
-          <div key={i}>
-            <Card
-              style={{
-                width: '18rem'
-              }}
-            >
-              <img
-                alt="Sample"
-                src="https://picsum.photos/300/200"
-              />
-              <CardBody>
-                <CardTitle tag="h5">
-                  {x.productName}
-                </CardTitle>
-                <CardSubtitle
-                  className="mb-2 text-muted"
-                  tag="h6"
-                >
-                  Card subtitle
-                </CardSubtitle>
-                <CardText>
-                  Some quick example text to build on the card title and make up the bulk of the card‘s content.
-                </CardText>
-                <Button>
-                  Button
-                </Button>
-              </CardBody>
-            </Card>
-          </div>
 
-        })
-      }
+      <Container fluid>
+        <Row className='g-4 product_card'>
+          {
+            state.product.productData.map((x, i) => {
+              return (
+                <Col xs={4} key={i}>
+                  <Card className='position-relative' style={{ backgroundColor: x.color }}>
+                    <img
+                      alt="Sample"
+                      src={x.productImage}
+                    />
+                    <div className='product_card_three_dot'>
+                      <PiDotsThreeOutlineVerticalBold />
+                      <dir className='product_card_three_dot_hover'>
+                        <button>Edit</button>
+                        <button>Delete</button>
+                      </dir>
+                    </div>
+                    <CardBody>
+                      <CardTitle tag="h5">
+                        {x.productName}
+                      </CardTitle>
+                      <CardSubtitle
+                        className="mb-2 text-muted"
+                        tag="h6"
+                      >
+                        {x.category}
+                      </CardSubtitle>
+                      <CardText>
+                        {x.price}
+                        <br />
+                        {x.discription}
+                        <br />
+                        {x.shopname}
+                        {x.mobile}
+                        {x.discount}
+                      </CardText>
+                      <div className='d-flex justify-content-between'>
+                        <Button >
+                          Buy Now
+                        </Button>
+                        <Button>
+                          Add To Cart
+                        </Button>
+                      </div>
+                    </CardBody>
+                  </Card>
+                </Col>
+              )
+            })
+          }
+        </Row>
+      </Container>
 
       {/* CARD */}
 
-    </div>
+    </div >
   )
 }
 
