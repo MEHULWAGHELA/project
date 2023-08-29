@@ -19,20 +19,17 @@ const Profile = () => {
     return (
         <>
             <div>
-                <div>Profile</div>
-
                 <Container>
                     <Row>
                         {state.profile.profileData.map((x, i) => {
                             return (
-
-                                <Col xs={12} sm={10} md={6}>
+                                <Col xs={12} sm={10} md={4} className='offset-0 offset-sm-1 offset-md-4'>
                                     <Card>
                                         <CardImg
                                             alt="Card image cap"
                                             src={x.userImage}
                                             top
-                                            width="100%"
+                                            width="50%"
                                         />
                                         <CardBody>
                                             <CardTitle tag="h5">

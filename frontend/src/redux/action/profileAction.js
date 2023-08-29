@@ -6,11 +6,12 @@ export const getProfile = () => {
     return (dispatch) => {
         axios.get('http://localhost:7000/api/user/getUser', authorise())
             .then((res) => {
-                dispatch({ type: GETPROFILE, data: res.data.data })
+                console.log(res.data.data)
+                dispatch({ type: GETPROFILE, data: [res.data.data] })
             }
             )
             .catch((err) => {
                 console.log(err)
             })
-    }   
+    }
 }

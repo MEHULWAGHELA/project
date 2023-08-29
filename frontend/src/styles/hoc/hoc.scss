@@ -4,8 +4,8 @@
     top: 0;
     color: white;
     background-color: #13101c;
-    height: 100vh;
-    min-height: 700px;
+    min-height: 100vh;
+    max-height: 100vh;
   }
   &_header {
     position: sticky;
